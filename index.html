@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matcha San — a little place for good things</title>
+<meta name="description" content="Matcha San is a small matcha and coffee bar in Melbourne. Find us at farmers markets and private events, or book us for your next event.">
+<link rel="icon" href="assets/logo/matcha-san-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page-shell">
+
+  <div class="banner">
+    Now serving at farmers markets around Melbourne and private events ·
+    follow <a href="https://instagram.com/matchasan.melb" target="_blank" rel="noopener">@matchasan.melb</a> for where we'll be next
+  </div>
+
+  <header class="site-header">
+    <a href="#home" class="logo-link" aria-label="Matcha San home">
+      <img src="assets/logo/matcha-san-logo.png" alt="Matcha San" class="logo">
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#home" data-nav="home">Home</a>
+      <a href="#menu" data-nav="menu">Menu</a>
+      <a href="#about" data-nav="about">About</a>
+      <a href="#events" data-nav="events">Events</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HOME -->
+    <section id="page-home" class="page" data-screen-label="Home">
+      <div class="hero-split">
+        <div class="hero-copy">
+          <span class="eyebrow">Matcha &amp; coffee · Melbourne</span>
+          <h1 class="display">a little place for good things</h1>
+          <p class="lede">Hand-whisked matcha lattes and one very good coffee. Find us at farmers markets around Melbourne, or book us for your event.</p>
+          <div class="btn-row">
+            <a href="#menu" class="btn btn-dark">See the menu</a>
+            <a href="#events" class="btn btn-outline">Book an event</a>
+          </div>
+        </div>
+        <div class="img-slot" style="aspect-ratio:4/5;max-width:560px" data-src="assets/images/home/hero.jpg" data-placeholder="Hero photo: matcha latte"></div>
+      </div>
+
+      <div class="pouring">
+        <div class="pouring-head">
+          <h2>What we're pouring</h2>
+          <a href="#menu" class="link-underline">Full menu</a>
+        </div>
+        <div class="drink-grid" id="featured-drinks"></div>
+      </div>
+
+      <div class="events-teaser">
+        <div class="img-slot" style="aspect-ratio:3/2" data-src="assets/images/events/event-teaser.jpg" data-placeholder="Event / gathering photo"></div>
+        <div class="events-teaser-copy">
+          <span class="eyebrow">Events</span>
+          <h2>A mobile matcha bar for your event</h2>
+          <p>Four packages, from small team gatherings to full-scale brand activations. Send us an enquiry and we'll get back to you.</p>
+          <a href="#events" class="btn btn-dark">Make an enquiry</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section id="page-menu" class="page" data-screen-label="Menu" hidden>
+      <div class="menu-wrap">
+        <div class="menu-title">
+          <span class="eyebrow">Menu</span>
+          <h1 class="display">Matcha San</h1>
+        </div>
+        <div id="menu-sections"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="page-about" class="page" data-screen-label="About" hidden>
+      <div class="about-hero">
+        <span class="eyebrow">Our story</span>
+        <h1 class="display">a little place for good things</h1>
+      </div>
+      <div class="about-body">
+        <div class="img-slot" style="aspect-ratio:4/5;max-width:520px" data-src="assets/images/about/founder.jpg" data-placeholder="Founder / whisking photo"></div>
+        <div class="about-copy">
+          <p class="pull-quote">Matcha San is a small matcha and coffee bar in Melbourne.</p>
+          <p>Every drink is whisked to order. The menu is short on purpose: five drinks we make well, with homemade strawberry jam, matcha cream foam and sea salt cream.</p>
+          <p>You'll find us at farmers markets and private events around Melbourne. Follow <a href="https://instagram.com/matchasan.melb" target="_blank" rel="noopener">@matchasan.melb</a> to see where we'll be next.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="page-events" class="page" data-screen-label="Events" hidden>
+      <div class="events-head">
+        <span class="eyebrow">Events</span>
+        <h1 class="display">Book Matcha San</h1>
+        <p>Tell us a little about your event. We'll reply by email to confirm availability and details.</p>
+      </div>
+
+      <div class="packages">
+        <h2>Event Packages</h2>
+        <div class="package-card">
+          <div class="package-tabs" id="package-tabs"></div>
+          <div class="package-body" id="package-body"></div>
+        </div>
+      </div>
+
+      <div class="enquiry" id="enquiry-form-wrap">
+        <div class="enquiry-intro">
+          <h2>Enquiry</h2>
+          <p>Prefer email? Write to <a href="mailto:hello.matchasan@gmail.com">hello.matchasan@gmail.com</a></p>
+        </div>
+
+        <form id="enquiry-form" class="enquiry-form" novalidate>
+          <div class="field-row">
+            <label class="field">Name
+              <input type="text" name="name" placeholder="Your name" required>
+            </label>
+            <label class="field">Email
+              <input type="email" name="email" placeholder="you@email.com" required>
+            </label>
+          </div>
+
+          <div class="chip-field">
+            <span class="field-label">Event type</span>
+            <div class="chip-row" id="type-chips"></div>
+          </div>
+
+          <div class="field-row">
+            <label class="field">Preferred date
+              <input type="date" name="date">
+            </label>
+            <label class="field">Guest count
+              <input type="number" name="guests" min="1" placeholder="e.g. 20">
+            </label>
+          </div>
+
+          <p class="form-error" id="form-error" hidden></p>
+
+          <button type="submit" class="btn btn-dark btn-submit">Send enquiry</button>
+        </form>
+
+        <div class="enquiry-sent" id="enquiry-sent" hidden>
+          <p class="sent-title">Thank you, <span id="sent-name"></span>.</p>
+          <p>We've received your enquiry and will reply to <span id="sent-email"></span> soon.</p>
+          <button type="button" class="link-underline" id="send-another">Send another</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img src="assets/logo/matcha-san-logo.png" alt="Matcha San" class="footer-logo">
+      <span>a little place for good things · Melbourne</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://instagram.com/matchasan.melb" target="_blank" rel="noopener">Instagram @matchasan.melb</a>
+      <a href="mailto:hello.matchasan@gmail.com">hello.matchasan@gmail.com</a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
