@@ -112,7 +112,26 @@
     img.src = src;
   }
 
+  function renderRotatingSlot(slot) {
+    const imgs = slot.dataset.srcs.split(",").map((src, i) => {
+      const img = new Image();
+      img.alt = slot.dataset.placeholder || "";
+      img.className = "rotate-img" + (i === 0 ? " active" : "");
+      img.src = src;
+      return img;
+    });
+    slot.innerHTML = "";
+    imgs.forEach((img) => slot.appendChild(img));
+    let current = 0;
+    setInterval(() => {
+      imgs[current].classList.remove("active");
+      current = (current + 1) % imgs.length;
+      imgs[current].classList.add("active");
+    }, 5000);
+  }
+
   function initImgSlots() {
+    document.querySelectorAll(".img-slot[data-srcs]").forEach(renderRotatingSlot);
     document.querySelectorAll(".img-slot[data-src]").forEach(renderImgSlot);
   }
 
