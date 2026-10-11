@@ -293,10 +293,9 @@ main { flex: 1; }
 }
 .pkg-name { margin: 0; font-family: 'Shippori Mincho', serif; font-weight: 600; font-size: 30px; }
 .pkg-desc { margin: -12px 0 0; font-size: 15px; line-height: 1.6; color: var(--muted); }
-.pkg-card.featured .pkg-desc, .pkg-card.featured .pkg-per-drink, .pkg-card.featured .pkg-stat-label, .pkg-card.featured .pkg-lead { color: var(--green-light); }
+.pkg-card.featured .pkg-desc, .pkg-card.featured .pkg-stat-label, .pkg-card.featured .pkg-lead { color: var(--green-light); }
 .pkg-price-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 10px; }
 .pkg-price { font-family: 'Shippori Mincho', serif; font-size: 48px; line-height: 1; }
-.pkg-per-drink { font-size: 14px; color: var(--muted); }
 .pkg-stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

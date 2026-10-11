@@ -14,7 +14,6 @@
       name: "Classic",
       desc: "Small teams, studio events and intimate gatherings.",
       price: "$750",
-      perDrink: "about $12.50 a drink",
       stats: [["60", "drinks"], ["2 hrs", "service"], ["1", "matcharista"]],
       lead: "",
       items: [
@@ -27,7 +26,6 @@
       name: "Signature",
       desc: "Corporate wellness days and event activations.",
       price: "$1,300",
-      perDrink: "about $11.80 a drink",
       stats: [["110", "drinks"], ["3 hrs", "service"], ["2", "matcharistas"]],
       lead: "Everything in Classic, plus",
       popular: true,
@@ -41,7 +39,6 @@
       name: "Premium",
       desc: "Large offices, product launches and high-volume traffic.",
       price: "$2,300",
-      perDrink: "about $11.50 a drink",
       stats: [["200", "drinks"], ["5 hrs", "service"], ["3", "matcharistas"]],
       lead: "Everything in Signature, plus",
       items: [
@@ -183,7 +180,6 @@
     card.appendChild(el("p", "pkg-desc", [pkg.desc]));
     card.appendChild(el("div", "pkg-price-row", [
       el("span", "pkg-price", [pkg.price]),
-      el("span", "pkg-per-drink", [pkg.perDrink]),
     ]));
     card.appendChild(el("div", "pkg-stats", pkg.stats.map(([num, label]) =>
       el("div", "pkg-stat", [el("span", "pkg-stat-num", [num]), el("span", "pkg-stat-label", [label])])
@@ -287,8 +283,9 @@
       payload.set("_captcha", "false");
 
       try {
-        const res = await fetch("php/enquiry-handler.php", {
+        const res = await fetch(ENQUIRY_ENDPOINT, {
           method: "POST",
+          headers: { Accept: "application/json" },
           body: payload,
         });
         const data = await res.json().catch(() => null);
