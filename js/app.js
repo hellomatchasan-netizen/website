@@ -13,12 +13,12 @@
 
   const PACKAGES = [
     {
-      name: "Classic Matcha Bar",
+      name: "Classic",
       desc: "Perfect for small teams, studio events and intimate gatherings.",
-      price: "$1,000",
+      price: "$750",
       hours: "2 hours service",
       items: [
-        "Up to 70 drinks of ceremonial Japanese matcha",
+        "Up to 60 drinks of ceremonial Japanese matcha",
         "2 drink flavours (Matcha Latte + 1 Flavor Choice)",
         "1 professional matcharista",
         "Full seamless setup and pack down",
@@ -27,14 +27,15 @@
       ],
     },
     {
-      name: "Signature Experience",
+      name: "Signature",
       desc: "Our most popular package. Ideal for corporate wellness days & event activations.",
-      price: "$1,600",
+      price: "$1,300",
       hours: "3 hours service",
+      popular: true,
       items: [
-        "Up to 120 drinks of ceremonial Japanese matcha",
+        "Up to 110 drinks of ceremonial Japanese matcha",
         "3 drink flavours (Classic Matcha Latte + 2 Flavor Choices)",
-        "2 professional matcharista",
+        "2 professional matcharistas",
         "Full event set up and pack down",
         "Premium birch plywood mobile matcha bar",
         "Menu board with your company branding",
@@ -42,30 +43,14 @@
       ],
     },
     {
-      name: "Premium Activation",
+      name: "Premium",
       desc: "Designed for large offices, product launches & high-volume traffic.",
-      price: "$2,400",
-      hours: "4 hours service",
+      price: "$2,300",
+      hours: "5 hours service",
       items: [
         "Up to 200 drinks of ceremonial grade Japanese matcha",
         "Full menu (5 flavors)",
-        "2 professional matcharista",
-        "Full event set up and pack down",
-        "Premium birch plywood mobile matcha bar",
-        "Menu board with your company branding",
-        "Custom cup branding",
-        TRANSPORT_NOTE,
-      ],
-    },
-    {
-      name: "Full Scale Activation",
-      desc: "For conferences, large corporate campuses & brand-led activations.",
-      price: "$3,600",
-      hours: "5 hours service",
-      items: [
-        "Up to 350 drinks of ceremonial grade Japanese matcha",
-        "Full menu (5 flavors)",
-        "3 professional matcharista",
+        "3 professional matcharistas",
         "Full event set up and pack down",
         "Premium birch plywood mobile matcha bar",
         "Menu board with your company branding",
@@ -217,6 +202,7 @@
 
     const main = el("div", "package-main");
     main.appendChild(el("span", "pkg-name", [pkg.name]));
+    if (pkg.popular) main.appendChild(el("span", "pkg-badge", ["Most popular"]));
     main.appendChild(el("span", "pkg-desc", [pkg.desc]));
     main.appendChild(el("span", "pkg-price", [`${pkg.price} — ${pkg.hours}`]));
     const enquireBtn = el("button", "btn btn-dark", ["Enquire about this package"]);

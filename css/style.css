@@ -275,6 +275,7 @@ main { flex: 1; }
 .package-tab:hover { background: var(--green-light); }
 .package-tab .tab-name { font-weight: 700; font-size: 15px; letter-spacing: .02em; }
 .package-tab .tab-price { font-size: 13px; color: var(--muted); }
+.pkg-badge { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: var(--green-light); color: var(--ink); padding: 3px 8px; border-radius: 999px; }
 .package-tab.active { background: var(--green); color: var(--bg); }
 .package-tab.active .tab-price { color: var(--bg); opacity: .85; }
 
