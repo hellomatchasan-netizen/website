@@ -19,7 +19,6 @@
       items: [
         "2 flavours: Matcha Latte plus 1 choice",
         "Ceremonial Japanese matcha",
-        "Minimalist birch plywood mobile bar",
       ],
     },
     {
@@ -31,7 +30,6 @@
       popular: true,
       items: [
         "3 flavours: Classic Matcha Latte plus 2 choices",
-        "Premium birch plywood mobile bar",
         "Menu board with your company branding",
       ],
     },
