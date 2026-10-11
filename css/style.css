@@ -251,57 +251,86 @@ main { flex: 1; }
 
 .packages { padding: 56px clamp(20px, 5vw, 64px) 0; display: flex; flex-direction: column; gap: 24px; }
 .packages h2 { font-size: clamp(28px, 3.5vw, 42px); }
-.package-card { border: 1px solid var(--ink); border-radius: 4px; overflow: hidden; background: var(--panel); }
-.package-tabs {
+.packages-head { display: flex; flex-direction: column; gap: 14px; max-width: 640px; }
+.packages-head p { margin: 0; font-size: 16px; line-height: 1.7; color: var(--muted); }
+.package-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(50%, 200px), 1fr));
-  border-bottom: 1px solid var(--ink);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 24px;
+  align-items: stretch;
+  padding-top: 16px;
 }
-.package-tab {
-  cursor: pointer;
-  min-height: 56px;
+.pkg-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 14px 20px;
-  box-shadow: inset -1px 0 0 var(--border);
-  gap: 2px;
-  border: none;
-  background: none;
-  text-align: left;
-  font: inherit;
-  color: inherit;
+  gap: 22px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 36px 32px;
 }
-.package-tab:hover { background: var(--green-light); }
-.package-tab .tab-name { font-weight: 700; font-size: 15px; letter-spacing: .02em; }
-.package-tab .tab-price { font-size: 13px; color: var(--muted); }
-.pkg-badge { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: var(--green-light); color: var(--ink); padding: 3px 8px; border-radius: 999px; }
-.package-tab.active { background: var(--green); color: var(--bg); }
-.package-tab.active .tab-price { color: var(--bg); opacity: .85; }
-
-.package-body {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-  gap: clamp(24px, 4vw, 56px);
-  padding: clamp(24px, 4vw, 44px);
+.pkg-card.featured {
+  background: var(--green);
+  color: var(--bg);
+  border-color: var(--green);
+  box-shadow: 0 18px 40px rgba(30, 35, 27, .18);
+  padding-top: 48px;
 }
-.package-main { display: flex; flex-direction: column; gap: 14px; }
-.package-main .pkg-name { font-family: 'Shippori Mincho', serif; font-size: clamp(26px, 3vw, 34px); line-height: 1.2; }
-.package-main .pkg-desc { font-size: 16px; line-height: 1.6; color: var(--muted); text-wrap: pretty; }
-.package-main .pkg-price { font-size: 18px; font-weight: 700; margin-top: 8px; }
-.package-main .btn { align-self: flex-start; margin-top: 12px; }
-.package-included { display: flex; flex-direction: column; gap: 10px; }
-.included-label { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--green); }
-.included-item {
+.pkg-card .pkg-badge {
+  position: absolute;
+  top: -14px;
+  left: 32px;
+  background: var(--bg);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border-radius: 999px;
+}
+.pkg-name { margin: 0; font-family: 'Shippori Mincho', serif; font-weight: 600; font-size: 30px; }
+.pkg-desc { margin: -12px 0 0; font-size: 15px; line-height: 1.6; color: var(--muted); }
+.pkg-card.featured .pkg-desc, .pkg-card.featured .pkg-per-drink, .pkg-card.featured .pkg-stat-label, .pkg-card.featured .pkg-lead { color: var(--green-light); }
+.pkg-price-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 10px; }
+.pkg-price { font-family: 'Shippori Mincho', serif; font-size: 48px; line-height: 1; }
+.pkg-per-drink { font-size: 14px; color: var(--muted); }
+.pkg-stats {
   display: grid;
-  grid-template-columns: 14px minmax(0, 1fr);
-  gap: 10px;
-  font-size: 15px;
-  line-height: 1.55;
-  padding: 8px 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--border-soft);
   border-bottom: 1px solid var(--border-soft);
 }
-.included-item .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); margin-top: 9px; }
+.pkg-stat { padding: 16px 0; display: flex; flex-direction: column; gap: 2px; }
+.pkg-stat + .pkg-stat { padding-left: 14px; border-left: 1px solid var(--border-soft); }
+.pkg-card.featured .pkg-stats, .pkg-card.featured .pkg-stat + .pkg-stat { border-color: rgba(243, 239, 228, .3); }
+.pkg-stat-num { font-family: 'Shippori Mincho', serif; font-size: 26px; }
+.pkg-stat-label { font-size: 12px; color: var(--muted); }
+.pkg-features { display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
+.pkg-lead { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--green); }
+.pkg-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.5; }
+.pkg-list li { display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 10px; }
+.pkg-list li::before { content: "+"; font-weight: 700; color: var(--green); }
+.pkg-card.featured .pkg-list li::before { color: var(--bg); }
+.pkg-btn { border: 1px solid var(--ink); background: none; color: var(--ink); min-height: 48px; }
+.pkg-btn:hover { background: var(--green-light); color: var(--ink); }
+.pkg-card.featured .pkg-btn { background: var(--bg); border-color: var(--bg); }
+.pkg-card.featured .pkg-btn:hover { background: var(--green-light); }
+.package-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 48px;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+}
+.addon-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.addon-label { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--green); }
+.addon-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.addon-pill { font-size: 14px; border: 1px solid var(--border); background: var(--panel); border-radius: 999px; padding: 8px 16px; }
 
 .enquiry {
   display: grid;
@@ -385,4 +414,5 @@ main { flex: 1; }
 .footer-logo { height: 56px; width: auto; filter: invert(1); opacity: .9; align-self: flex-start; }
 .footer-brand span { font-size: 14px; color: #B9BDA8; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 12px 32px; font-size: 14px; }
+.footer-copy { flex: 0 0 100%; margin: 8px 0 0; padding-top: 20px; border-top: 1px solid rgba(228, 230, 212, .2); font-size: 13px; color: #B9BDA8; }
 .footer-links a { color: var(--green-light); }

@@ -9,61 +9,54 @@
     { no: "05", name: "SHIO SAN", price: "$8.0", desc: "special brew coffee + sea salt cream foam", img: "assets/images/drinks/drink-5.jpg" },
   ];
 
-  const TRANSPORT_NOTE = "Transportation to and from the event (15KM from Melbourne CBD). Long distance fee applies for farther areas.";
-
   const PACKAGES = [
     {
       name: "Classic",
-      desc: "Perfect for small teams, studio events and intimate gatherings.",
+      desc: "Small teams, studio events and intimate gatherings.",
       price: "$750",
-      hours: "2 hours service",
+      perDrink: "about $12.50 a drink",
+      stats: [["60", "drinks"], ["2 hrs", "service"], ["1", "matcharista"]],
+      lead: "",
       items: [
-        "Up to 60 drinks of ceremonial Japanese matcha",
-        "2 drink flavours (Matcha Latte + 1 Flavor Choice)",
-        "1 professional matcharista",
-        "Full seamless setup and pack down",
-        "Minimalistic birch plywood mobile matcha bar",
-        TRANSPORT_NOTE,
+        "2 flavours: Matcha Latte plus 1 choice",
+        "Ceremonial Japanese matcha",
+        "Minimalist birch plywood mobile bar",
       ],
     },
     {
       name: "Signature",
-      desc: "Our most popular package. Ideal for corporate wellness days & event activations.",
+      desc: "Corporate wellness days and event activations.",
       price: "$1,300",
-      hours: "3 hours service",
+      perDrink: "about $11.80 a drink",
+      stats: [["110", "drinks"], ["3 hrs", "service"], ["2", "matcharistas"]],
+      lead: "Everything in Classic, plus",
       popular: true,
       items: [
-        "Up to 110 drinks of ceremonial Japanese matcha",
-        "3 drink flavours (Classic Matcha Latte + 2 Flavor Choices)",
-        "2 professional matcharistas",
-        "Full event set up and pack down",
-        "Premium birch plywood mobile matcha bar",
+        "3 flavours: Classic Matcha Latte plus 2 choices",
+        "Premium birch plywood mobile bar",
         "Menu board with your company branding",
-        TRANSPORT_NOTE,
       ],
     },
     {
       name: "Premium",
-      desc: "Designed for large offices, product launches & high-volume traffic.",
+      desc: "Large offices, product launches and high-volume traffic.",
       price: "$2,300",
-      hours: "5 hours service",
+      perDrink: "about $11.50 a drink",
+      stats: [["200", "drinks"], ["5 hrs", "service"], ["3", "matcharistas"]],
+      lead: "Everything in Signature, plus",
       items: [
-        "Up to 200 drinks of ceremonial grade Japanese matcha",
-        "Full menu (5 flavors)",
-        "3 professional matcharistas",
-        "Full event set up and pack down",
-        "Premium birch plywood mobile matcha bar",
-        "Menu board with your company branding",
+        "Full menu, all 5 flavours",
         "Custom cup branding",
-        TRANSPORT_NOTE,
+        "Third matcharista to greet guests",
       ],
     },
   ];
 
+  const ADDONS = ["Extra hour +$300", "Extra matcharista +$250", "Custom cups +$250"];
+
   const EVENT_TYPES = [...PACKAGES.map((p) => p.name), "Not sure yet"];
 
   const state = {
-    activePackage: 0,
     eventType: "",
   };
 
@@ -175,57 +168,50 @@
     });
   }
 
-  function renderPackageTabs() {
-    const target = document.getElementById("package-tabs");
-    if (!target) return;
-    target.innerHTML = "";
-    PACKAGES.forEach((pkg, i) => {
-      const tab = el("button", "package-tab" + (i === state.activePackage ? " active" : ""), [
-        el("span", "tab-name", [pkg.name]),
-        el("span", "tab-price", [pkg.price]),
-      ]);
-      tab.type = "button";
-      tab.addEventListener("click", () => {
-        state.activePackage = i;
-        renderPackageTabs();
-        renderPackageBody();
-      });
-      target.appendChild(tab);
-    });
+  function goToEnquiry(type) {
+    setEventType(type);
+    const formWrap = document.getElementById("enquiry-form-wrap");
+    if (formWrap) {
+      window.scrollTo({ top: formWrap.getBoundingClientRect().top + window.scrollY - 24, behavior: "smooth" });
+    }
   }
 
-  function renderPackageBody() {
-    const target = document.getElementById("package-body");
+  function packageCard(pkg) {
+    const card = el("article", "pkg-card" + (pkg.popular ? " featured" : ""));
+    if (pkg.popular) card.appendChild(el("span", "pkg-badge", ["Most popular"]));
+    card.appendChild(el("h3", "pkg-name", [pkg.name]));
+    card.appendChild(el("p", "pkg-desc", [pkg.desc]));
+    card.appendChild(el("div", "pkg-price-row", [
+      el("span", "pkg-price", [pkg.price]),
+      el("span", "pkg-per-drink", [pkg.perDrink]),
+    ]));
+    card.appendChild(el("div", "pkg-stats", pkg.stats.map(([num, label]) =>
+      el("div", "pkg-stat", [el("span", "pkg-stat-num", [num]), el("span", "pkg-stat-label", [label])])
+    )));
+    const features = el("div", "pkg-features");
+    if (pkg.lead) features.appendChild(el("span", "pkg-lead", [pkg.lead]));
+    features.appendChild(el("ul", "pkg-list", pkg.items.map((item) => el("li", "", [item]))));
+    card.appendChild(features);
+    const btn = el("button", "btn pkg-btn", ["Enquire about " + pkg.name]);
+    btn.type = "button";
+    btn.addEventListener("click", () => goToEnquiry(pkg.name));
+    card.appendChild(btn);
+    return card;
+  }
+
+  function renderPackages() {
+    const target = document.getElementById("package-grid");
     if (!target) return;
-    const pkg = PACKAGES[state.activePackage];
     target.innerHTML = "";
+    PACKAGES.forEach((pkg) => target.appendChild(packageCard(pkg)));
 
-    const main = el("div", "package-main");
-    main.appendChild(el("span", "pkg-name", [pkg.name]));
-    if (pkg.popular) main.appendChild(el("span", "pkg-badge", ["Most popular"]));
-    main.appendChild(el("span", "pkg-desc", [pkg.desc]));
-    main.appendChild(el("span", "pkg-price", [`${pkg.price} — ${pkg.hours}`]));
-    const enquireBtn = el("button", "btn btn-dark", ["Enquire about this package"]);
-    enquireBtn.type = "button";
-    enquireBtn.addEventListener("click", () => {
-      setEventType(pkg.name);
-      const formWrap = document.getElementById("enquiry-form-wrap");
-      if (formWrap) {
-        window.scrollTo({ top: formWrap.getBoundingClientRect().top + window.scrollY - 24, behavior: "smooth" });
-      }
-    });
-    main.appendChild(enquireBtn);
-
-    const included = el("div", "package-included");
-    included.appendChild(el("span", "included-label", ["What's included"]));
-    pkg.items.forEach((item) => {
-      included.appendChild(
-        el("div", "included-item", [el("span", "dot"), el("span", "", [item])])
-      );
-    });
-
-    target.appendChild(main);
-    target.appendChild(included);
+    const addons = document.getElementById("package-addons");
+    if (addons) {
+      addons.innerHTML = "";
+      ADDONS.forEach((label) => addons.appendChild(el("span", "addon-pill", [label])));
+    }
+    const unsure = document.getElementById("package-unsure");
+    if (unsure) unsure.addEventListener("click", () => goToEnquiry("Not sure yet"));
   }
 
   function renderTypeChips() {
@@ -355,8 +341,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     renderFeaturedDrinks();
     renderMenu();
-    renderPackageTabs();
-    renderPackageBody();
+    renderPackages();
     renderTypeChips();
     initImgSlots();
     initEnquiryForm();
