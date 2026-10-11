@@ -279,6 +279,9 @@
     }
   }
 
+  // FormSubmit relays the form to this inbox; works from a static host (GitHub Pages).
+  const ENQUIRY_ENDPOINT = "https://formsubmit.co/ajax/hello.matchasan@gmail.com";
+
   function initEnquiryForm() {
     const form = document.getElementById("enquiry-form");
     const sentPanel = document.getElementById("enquiry-sent");
@@ -306,6 +309,10 @@
 
       const payload = new FormData(form);
       payload.set("eventType", state.eventType);
+      payload.set("_subject", "Matcha San: new event enquiry from " + name);
+      payload.set("_replyto", email);
+      payload.set("_template", "table");
+      payload.set("_captcha", "false");
 
       try {
         const res = await fetch("php/enquiry-handler.php", {
@@ -313,8 +320,8 @@
           body: payload,
         });
         const data = await res.json().catch(() => null);
-        if (!res.ok || !data || data.ok !== true) {
-          throw new Error((data && data.error) || "Something went wrong sending your enquiry.");
+        if (!res.ok || !data || String(data.success) !== "true") {
+          throw new Error((data && data.message) || "Something went wrong sending your enquiry.");
         }
         document.getElementById("sent-name").textContent = name;
         document.getElementById("sent-email").textContent = email;

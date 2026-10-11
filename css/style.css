@@ -104,7 +104,7 @@ input, select, button { font-family: inherit; }
 
 main { flex: 1; }
 .page { display: flex; flex-direction: column; }
-.page[hidden] { display: none; }
+.page[hidden], .enquiry-sent[hidden], .enquiry-form[hidden] { display: none; }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
 .btn {
