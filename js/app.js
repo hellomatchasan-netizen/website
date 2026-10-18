@@ -2,11 +2,11 @@
   "use strict";
 
   const DRINKS = [
-    { no: "01", name: "MATCHA SAN", price: "$8.0", desc: "classic matcha latte", img: "assets/images/drinks/drink-1.jpg" },
-    { no: "02", name: "COCONUT CLOUD SAN", price: "$8.0", desc: "refreshing coconut water + soft matcha cloud", img: "assets/images/drinks/drink-2.jpg" },
-    { no: "03", name: "DOUBLE MATCHA SAN", price: "$8.5", desc: "matcha latte + matcha cream foam", img: "assets/images/drinks/drink-3.jpg" },
-    { no: "04", name: "STRAWBERRY MATCHA SAN", price: "$8.5", desc: "homemade strawberry jam + matcha latte", img: "assets/images/drinks/drink-4.jpg" },
-    { no: "05", name: "SHIO SAN", price: "$8.0", desc: "special brew coffee + sea salt cream foam", img: "assets/images/drinks/drink-5.jpg" },
+    { no: "01", name: "MATCHA SAN", price: "$8.0", desc: "classic matcha latte", ingredients: "matcha, milk, sugar, salted cream", img: "assets/images/drinks/drink-1.jpg" },
+    { no: "02", name: "COCONUT CLOUD SAN", price: "$8.0", desc: "refreshing coconut water + soft matcha cloud", ingredients: "coconut water, matcha cream, coconut sprinkle", img: "assets/images/drinks/drink-2.jpg" },
+    { no: "03", name: "DOUBLE MATCHA SAN", price: "$8.5", desc: "matcha latte + matcha cream foam", ingredients: "matcha, milk, sugar, matcha cream", img: "assets/images/drinks/drink-3.jpg" },
+    { no: "04", name: "STRAWBERRY MATCHA SAN", price: "$8.5", desc: "homemade strawberry jam + matcha latte", ingredients: "strawberry jam, matcha, milk, sugar, salted cream", img: "assets/images/drinks/drink-4.jpg" },
+    { no: "05", name: "SHIO SAN", price: "$8.0", desc: "special brew coffee + sea salt cream foam", ingredients: "coffee, milk, salted cream, cacao powder", img: "assets/images/drinks/drink-5.jpg" },
   ];
 
   const PACKAGES = [
@@ -139,6 +139,8 @@
     row.appendChild(el("span", "price", [d.price]));
     row.appendChild(el("span", ""));
     row.appendChild(el("span", "desc", [d.desc]));
+    row.appendChild(el("span", ""));
+    row.appendChild(el("span", "ingredients", [d.ingredients]));
     return row;
   }
 

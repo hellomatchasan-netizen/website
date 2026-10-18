@@ -222,6 +222,9 @@ main { flex: 1; }
 .menu-item .name { font-weight: 700; font-size: 16px; letter-spacing: .1em; }
 .menu-item .price { font-size: 16px; font-weight: 500; }
 .menu-item .desc { font-size: 15px; color: var(--muted); line-height: 1.5; grid-column: 2 / 4; }
+.menu-item .ingredients { font-size: 13px; color: var(--muted); opacity: .8; line-height: 1.5; grid-column: 2 / 4; }
+.menu-notes { margin-top: 28px; font-size: 13px; color: var(--muted); line-height: 1.7; }
+.menu-notes p { margin: 0; }
 
 /* ABOUT */
 .about-hero {
